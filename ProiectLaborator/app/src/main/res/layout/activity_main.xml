@@ -1,0 +1,76 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/img_2"
+    tools:context=".MainActivity">
+
+    <Button
+
+        android:id="@+id/gpsPinPointBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+
+        android:text="GPS Pin Point" />
+
+    <Button
+        android:id="@+id/sosBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SOS"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/llContactsBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Live Location For Contacts"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/llContactsBtn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Live Location For Contacts 2"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/assistanceBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Assistance Coordination"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/nearbyServicesBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nearby Services"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/vehicleDiagnosticBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vehicle Diagnostic"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/emergenciesSuppliesBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Emergency Supplies"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/weatherAlertsBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Weather Alerts"
+        android:layout_marginBottom="16dp" />
+
+</LinearLayout>
