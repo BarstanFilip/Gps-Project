@@ -43,7 +43,7 @@ public class NearbyServicesActivity extends AppCompatActivity implements OnMapRe
         mapFragment.getMapAsync(this);
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        Places.initialize(getApplicationContext(), "AIzaSyCyQQ--2Z252PM9N_EGnpculzniFivYqxk");
+        Places.initialize(getApplicationContext(), "API KEY");
         placesClient = Places.createClient(this);
 
         
