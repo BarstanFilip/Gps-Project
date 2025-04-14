@@ -1,4 +1,4 @@
-// NearbyServicesActivity.java
+
 package com.example.proiectlaborator;
 
 import androidx.annotation.NonNull;
@@ -46,7 +46,7 @@ public class NearbyServicesActivity extends AppCompatActivity implements OnMapRe
         Places.initialize(getApplicationContext(), "AIzaSyCyQQ--2Z252PM9N_EGnpculzniFivYqxk");
         placesClient = Places.createClient(this);
 
-        // Initialize location callback
+        
         locationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(LocationResult locationResult) {
@@ -54,7 +54,7 @@ public class NearbyServicesActivity extends AppCompatActivity implements OnMapRe
                     return;
                 }
                 for (Location location : locationResult.getLocations()) {
-                    // Update map with new location
+               
                     updateMap(location);
                 }
             }
@@ -65,28 +65,19 @@ public class NearbyServicesActivity extends AppCompatActivity implements OnMapRe
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Check for location permissions
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
             return;
         }
 
-        // Enable my location button and request location updates
         mMap.setMyLocationEnabled(true);
         startLocationUpdates();
     }
 
     private void startLocationUpdates() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
+ 
         }
         fusedLocationClient.requestLocationUpdates(LocationRequest.create(), locationCallback, null);
     }
@@ -96,8 +87,7 @@ public class NearbyServicesActivity extends AppCompatActivity implements OnMapRe
         mMap.addMarker(new MarkerOptions().position(currentLocation).title("Current Location"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15));
 
-        // Perform a nearby search for restaurants, gas stations, etc.
-        // You can customize the types according to your requirements
+        
         String[] placeTypes = {"restaurant", "gas_station"};
         new NearbyPlacesTask(this, placesClient, mMap, currentLocation).execute(placeTypes);
     }
