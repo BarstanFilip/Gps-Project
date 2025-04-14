@@ -35,7 +35,7 @@ import java.net.URL;
 public class WeatherAlertActivity extends AppCompatActivity {
 
     private final String WEATHER_API_URL = "http://api.openweathermap.org/data/2.5/weather";
-    private final String WEATHER_API_KEY = "5ffe07908e81bf80190020cddce01f86";
+    private final String WEATHER_API_KEY = "API KEY";
 
     private TextView txtViewStats;
     private EditText edtTxtCoordinates;
@@ -45,7 +45,6 @@ public class WeatherAlertActivity extends AppCompatActivity {
     private LocationManager locationManager;
     private LocationListener locationListener;
 
-    // Notification channel ID and name
     private static final String CHANNEL_ID = "weather_warning_channel";
     private static final String CHANNEL_NAME = "Weather Warnings";
 
@@ -68,13 +67,13 @@ public class WeatherAlertActivity extends AppCompatActivity {
             public void onLocationChanged(@NonNull Location location) {
                 double latitude = location.getLatitude();
                 double longitude = location.getLongitude();
-                // Update EditText with current coordinates
+
                 edtTxtCoordinates.setText(latitude + ", " + longitude);
             }
 
             @Override
             public void onProviderDisabled(@NonNull String provider) {
-                // Handle provider disabled
+
             }
         };
 
@@ -84,24 +83,24 @@ public class WeatherAlertActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (ActivityCompat.checkSelfPermission(WeatherAlertActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                         ActivityCompat.checkSelfPermission(WeatherAlertActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    // Handle permissions
+        
                     return;
                 }
                 locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, locationListener, null);
             }
         });
 
-        // Fetch weather data when the button is clicked
+        
         btnShowStats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String coordinates = edtTxtCoordinates.getText().toString();
                 if (!coordinates.isEmpty()) {
-                    // Extract latitude and longitude
+               
                     String[] parts = coordinates.split(",");
                     double latitude = Double.parseDouble(parts[0].trim());
                     double longitude = Double.parseDouble(parts[1].trim());
-                    // Fetch weather data
+           
                     new FetchWeatherTask().execute(WEATHER_API_URL + "?lat=" + latitude + "&lon=" + longitude + "&appid=" + WEATHER_API_KEY);
                 } else {
                     Toast.makeText(WeatherAlertActivity.this, "Please get current location first", Toast.LENGTH_SHORT).show();
