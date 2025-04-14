@@ -60,7 +60,7 @@ public class WeatherAlertActivity extends AppCompatActivity {
         btnShowStats = findViewById(R.id.btnShowStats);
         btnGetCurrentLocation = findViewById(R.id.btnGetCurrentLocation);
 
-        // Initialize LocationManager and LocationListener
+   
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locationListener = new LocationListener() {
             @Override
@@ -109,7 +109,7 @@ public class WeatherAlertActivity extends AppCompatActivity {
         });
     }
 
-    // Create notification channel
+
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = CHANNEL_NAME;
@@ -123,7 +123,7 @@ public class WeatherAlertActivity extends AppCompatActivity {
         }
     }
 
-    // Method to send notification
+  
     private void sendNotification(String message) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_warning)
@@ -134,13 +134,7 @@ public class WeatherAlertActivity extends AppCompatActivity {
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+       
             return;
         }
         notificationManager.notify(1, builder.build());
@@ -191,7 +185,7 @@ public class WeatherAlertActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             if (s != null) {
                 try {
-                    // Parse JSON response
+                 
                     JSONObject jsonObject = new JSONObject(s);
                     JSONObject main = jsonObject.getJSONObject("main");
                     double temp = main.getDouble("temp");
@@ -201,28 +195,28 @@ public class WeatherAlertActivity extends AppCompatActivity {
                     JSONObject wind = jsonObject.getJSONObject("wind");
                     double windSpeed = wind.getDouble("speed");
 
-                    // Check for severe weather conditions
+                    
                     boolean hasWarnings = false;
                     StringBuilder warningMessage = new StringBuilder();
 
-                    // Example: Check for high temperature
+                    
                     if (temp > 35) {
                         hasWarnings = true;
                         warningMessage.append("High temperature! ");
                     }
 
-                    // Example: Check for high wind speed
+           
                     if (windSpeed > 20) {
                         hasWarnings = true;
                         warningMessage.append("High wind speed! ");
                     }
 
-                    // Send notification if there are warnings
+                    
                     if (hasWarnings) {
                         sendNotification(warningMessage.toString());
                     }
 
-                    // Update TextView with weather stats and warnings
+                  
                     String statsMessage = "Temperature: " + temp + "°C\n" +
                             "Humidity: " + humidity + "%\n" +
                             "Pressure: " + pressure + " hPa\n" +
